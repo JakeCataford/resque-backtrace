@@ -2,8 +2,8 @@ module Resque
   module Failure
     class Backtrace < Base
       def save
-        bt = filter_backtrace(exception.backtrace)
-        worker.log bt.join("\n")
+        backtrace  = filter_backtrace(exception.backtrace)
+        Logging.warn backtrace.join("\n")
       end
 
       private
